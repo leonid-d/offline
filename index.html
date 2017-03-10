@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+<div id="beam-app"></div>
+<script>
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/worker.js', {
+      scope: '/'
+    }).then(function(worker) {
+      console.log('Yey!', worker);
+    }).catch(function(error) {
+      console.log('Boo!', error);
+    });
+  }
+</script>
+</body>
+</html>

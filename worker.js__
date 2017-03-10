@@ -1,0 +1,69 @@
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('v1').then(cache =>
+      cache.addAll([
+        '/',
+        '/index.html',
+        '/bundle.js',
+      ])
+    )
+  );
+});
+
+
+self.addEventListener('message', event => {
+  event.source.postMessage('response');
+  console.log(event.data);
+    // Get all the connected clients and forward the message along.
+  const promise = self.clients.matchAll()
+    .then(clientList => {
+      // event.source.id contains the ID of the sender of the message.
+      const senderID = event.source.id;
+      console.log(senderID);
+      clientList.forEach(client => {
+        console.log('asdfasdfasdfas');
+        // Skip sending the message to the client that sent it.
+        client.postMessage({
+          client: senderID,
+          message: event.data,
+        });
+      });
+    });
+
+  // If event.waitUntil is defined, use it to extend the
+  // lifetime of the Service Worker.
+  if (event.waitUntil) {
+    event.waitUntil(promise);
+  }
+});
+
+self.addEventListener('fetch', function(event) {
+  console.log('asdfas');
+  let response;
+  event.respondWith(caches.match(event.request).catch(function() {
+    return fetch(event.request);
+  }).then(function(r) {
+    console.log(r);
+    response = r;
+    caches.open('v1').then(function(cache) {
+      cache.put(event.request, response.clone());
+    });
+    return response;
+  })
+    .catch(() => caches.match('/cities.json')
+  ));
+});
+
+self.addEventListener('activate', event => {
+  const cacheWhitelist = ['v1'];
+  event.waitUntil(
+    caches.keys().then(keyList =>
+      Promise.all(keyList.map(key => {
+        console.log('kek1111');
+        if (cacheWhitelist.indexOf(key) === -1) {
+          return caches.delete(key);
+        }
+      }))
+    )
+  );
+});
