@@ -4,13 +4,11 @@
 const config = {
   version: 'v1',
   staticCacheItems: [
-    '/',
     '/offline',
     '/offline/index.html',
     '/offline/bundle.js',
   ],
   cachePathPattern: [
-    '/',
     '/offline',
     '/offline/index.html',
     '/offline/bundle.js',
