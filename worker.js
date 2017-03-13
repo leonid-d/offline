@@ -5,14 +5,16 @@ const config = {
   version: 'v1',
   staticCacheItems: [
     '/',
-    '/index.html',
-    '/bundle.js',
+    '/offline',
+    '/offline/index.html',
+    '/offline/bundle.js',
   ],
   cachePathPattern: [
     '/',
-    '/index.html',
-    '/bundle.js',
-    '/cities.json',
+    '/offline',
+    '/offline/index.html',
+    '/offline/bundle.js',
+    '/offline/cities.json',
   ],
   offlineImage: '<svg role="img" aria-labelledby="offline-title"'
   + ' viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">'
@@ -21,7 +23,7 @@ const config = {
   + '<text fill="#9B9B9B" font-family="Times New Roman,Times,serif" font-size="72" ' +
   'font-weight="bold"><tspan x="93" y="172">offline</tspan></text></g></svg>',
   offlinePage: '/offline/',
-  urlToSave: 'offline/cities.json',
+  urlToSave: '/offline/cities.json',
   requestToSave: null,
 };
 
