@@ -9,7 +9,7 @@
 <script>
   if (navigator.serviceWorker) {
     navigator.serviceWorker.register('/offline/worker.js', {
-      scope: '/'
+      scope: '/offline/'
     }).then(function(worker) {
       console.log('Yey!', worker);
     }).catch(function(error) {
