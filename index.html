@@ -8,7 +8,7 @@
 <div id="beam-app"></div>
 <script>
   if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('./worker.js', {
+    navigator.serviceWorker.register('/offline/worker.js', {
       scope: '/'
     }).then(function(worker) {
       console.log('Yey!', worker);
@@ -17,5 +17,6 @@
     });
   }
 </script>
+<script src="/offline/bundle.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ const config = {
   + '<text fill="#9B9B9B" font-family="Times New Roman,Times,serif" font-size="72" ' +
   'font-weight="bold"><tspan x="93" y="172">offline</tspan></text></g></svg>',
   offlinePage: '/offline/',
-  urlToSave: '/cities.json',
+  urlToSave: 'offline/cities.json',
   requestToSave: null,
 };
 
@@ -137,12 +137,18 @@ self.addEventListener('message', event => {
   const cacheKey = cacheName(resourceType, config);
   event.source.postMessage('response');
   // Get all the connected clients and forward the message along.
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'image/jpeg');
+
+  const myInit = { method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default' };
   const promise = self.clients.matchAll()
     .then(() => {
       // event.source.id contains the ID of the sender of the message.
       // const senderID = event.source.id;
-      console.log(request);
-      fetch(request)
+      fetch(new Request(config.urlToSave, myInit))
         .then(response => addToCache(cacheKey, request, response));
     });
 

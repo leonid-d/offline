@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "988ee52a43c556ae74c0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0465c4735801f8c5d92d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -16905,7 +16905,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
   return desc;
 }
 
-var url = '/cities.json';
+var url = '/offline/cities.json';
 
 var Demo = (_class = function (_React$Component) {
   _inherits(Demo, _React$Component);
